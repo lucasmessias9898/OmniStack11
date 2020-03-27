@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
+import { toast } from 'react-toastify';
+import { css } from 'glamor';
 
 import api from '../../services/api';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
@@ -24,7 +27,20 @@ export default function Logon() {
 
             history.push('/profile');
         } catch(err) {
-            alert('Falha no login, tente novamente');
+
+            toast.error('Falha no login, tente novamente', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                bodyClassName: css({
+                    fontSize: "14px",
+                    padding: "0 24px",
+                }),
+                
+            });
         }
     }
 
